@@ -22,6 +22,24 @@ sentences = [
     'Nie powinno sprawić żadnego problemu, bo Google jest dozwolony',
 ]
 
+word_counter = {}
+for i in sentences:
+    list_of_words=i.lower().split()
+    for j in list_of_words:
+        if j not in word_counter:
+            word_counter[j] = 1
+        else:
+            word_counter[j] += 1
+
+word_counter = dict(sorted(word_counter.items(), key=lambda item:item[1],reverse=True))
+
+l=1
+for i in word_counter:
+    print(l,". ",'"{}"'.format(i)," - ",word_counter[i], sep="")
+    l=l+1
+    if l==4:
+        break
+
 # Example result:
 # 1. "mam" - 12
 # 2. "tak" - 5

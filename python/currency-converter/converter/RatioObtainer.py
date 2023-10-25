@@ -1,4 +1,4 @@
-import json, datetime, urllib.request
+import json, datetime, urllib.request, ssl
 
 
 class RatioObtainer:
@@ -30,10 +30,16 @@ class RatioObtainer:
         # This function calls API for today's exchange ratio
         # Should ask API for today's exchange ratio with given base and target currency
         # and call save_ratio method to save it
-        response_api=urllib.request.urlopen('https://api.exchangerate.host/live?access_key=cffa089eb163fa5a87eaded7c524a1a9')
-        data_from_api=response_api.read().decode()
-        temp='"{}{}"'.format(self.base,self.target)
-        ratio=data_from_api["quotes"][temp]
+        ctx=ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+
+        url=('http://api.exchangerate.host/live?access_key=cffa089eb163fa5a87eaded7c524a1a9&source={}').format(self.base)
+        response_api=urllib.request.urlopen(url)
+        data_from_api=response_api.read()
+        data_json = json.loads(data_from_api.decode('utf-8'))
+        temp="{}{}".format(self.base,self.target)
+        ratio=data_json["quotes"][temp]
         self.save_ratio(ratio)
         pass
 

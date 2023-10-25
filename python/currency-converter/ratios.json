@@ -15,6 +15,24 @@
     "base_currency": "USD",
     "target_currency": "EUR",
     "date_fetched": "2019-09-27",
-    "ratio": 0.9144947417
+    "ratio": 0.946425
+  },
+  {
+    "base_currency": "EUR",
+    "target_currency": "USD",
+    "date_fetched": "2023-10-25",
+    "ratio": 1.056624
+  },
+  {
+    "base_currency": "EUR",
+    "target_currency": "PLN",
+    "date_fetched": "2023-10-25",
+    "ratio": 4.483128
+  },
+  {
+    "base_currency": "PLN",
+    "target_currency": "AED",
+    "date_fetched": "2023-10-25",
+    "ratio": 0.865669
   }
 ]
